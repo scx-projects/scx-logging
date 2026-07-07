@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>dev.scx</groupId>
+        <artifactId>scx-parent</artifactId>
+        <version>1</version>
+        <relativePath/>
+    </parent>
+
+    <artifactId>scx-logging</artifactId>
+    <version>0.10.0</version>
+    <packaging>jar</packaging>
+
+    <name>SCX Logging</name>
+    <description>
+        SCX Logging
+    </description>
+    <url>https://github.com/scx-projects/scx-logging</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://github.com/scx-projects/scx-logging/blob/master/LICENSE</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>scx567888</id>
+            <name>scx567888</name>
+            <email>scx567888@outlook.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:https://github.com/scx-projects/scx-logging.git</connection>
+        <developerConnection>scm:git:https://github.com/scx-projects/scx-logging.git</developerConnection>
+        <url>https://github.com/scx-projects/scx-logging</url>
+    </scm>
+
+    <build>
+        <plugins>
+
+            <!-- 此插件用于将项目打包为 jar 包-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <!-- 因为 scx 并不是可执行 jar 包, 所以此处不添加 classpath 到描述文件中 -->
+                            <addClasspath>false</addClasspath>
+                        </manifest>
+                    </archive>
+                    <!-- 此处因为没有类似 maven-source-plugin 插件中 excludeResources 的选项 -->
+                    <!-- 所以在这里手动排除资源文件, 具体文件说明见下方 -->
+                    <excludes>
+                        <!-- 默认 git 占位空文件 -->
+                        <exclude>/.gitkeep</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <dependencies>
+
+        <!-- slf4j -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- log4j2 -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j2.version}</version>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- TestNG 测试包 -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <properties>
+
+        <!-- *********************** 以下为依赖包版本 *********************** -->
+        <slf4j.version>2.0.18</slf4j.version>
+        <log4j2.version>2.26.1</log4j2.version>
+        <testng.version>7.12.0</testng.version>
+
+    </properties>
+
+</project>
